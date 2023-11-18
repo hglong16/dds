@@ -1,3 +1,5 @@
+import 'package:chap2/linked_list/doubly_linked_list.dart';
+
 abstract class Queue<E> {
   bool enqueue(E element);
   E? dequeue();
@@ -27,4 +29,26 @@ class QueueList<E> implements Queue<E> {
   String toString() {
     return _list.toString();
   }
+}
+
+class QueueLinkedList<E> implements Queue<E> {
+  final _list = DoublyLinkedList<E>();
+
+  @override
+  bool enqueue(E element) {
+    _list.append(element);
+    return true;
+  }
+
+  @override
+  E? dequeue() => _list.pop();
+
+  @override
+  bool get isEmpty => _list.isEmpty;
+
+  @override
+  get peek => _list.head?.value;
+
+  @override
+  String toString() => _list.toString();
 }
